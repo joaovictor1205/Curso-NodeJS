@@ -1,24 +1,12 @@
-var express = require('express');
-var app = express();
-
-app.set('view engine', 'ejs');
+var app = require('./config/server');
 
 
-app.get('/', function(req,res){
-    res.render('home/index');
-})
+var rota_noticias = require('./app/routes/noticias')(app);
 
+var rota_formulario_inclusao_noticia = require('./app/routes/formulario_inclusao_noticia')(app);
 
-app.get('/formulario_inclusao_noticia', function(req,res){
-    res.render('admin/form_add_noticia');
-})
-
-
-app.get('/noticias', function(req,res){
-    res.render('noticias/noticias');
-})
-
+var rota_home = require('./app/routes/home')(app);
 
 app.listen(3000, function(){
-    console.log("Servidor OK");
+    console.log('Servidor ON');
 });
